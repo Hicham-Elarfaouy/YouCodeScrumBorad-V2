@@ -14,16 +14,23 @@
     {
         //CODE HERE
         //SQL SELECT
+        $todoTaksCount = 0;
+        $inProgressTaksCount = 0;
+        $doneTaksCount = 0;
         $link = connection();
 
         $sql = "SELECT * FROM tasks where status_id = $status";
         if($result = mysqli_query($link, $sql)){
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result)){
-                    $icon = 'far fa-question-circle';
-                    if($status == 2){
+                    if($status == 1){
+                        $_SESSION['todoTasksCount'] = ++$todoTaksCount;
+                        $icon = 'far fa-question-circle';
+                    }else if($status == 2){
+                        $_SESSION['inProgressTaksCount'] = ++$inProgressTaksCount;
                         $icon = 'fas fa-circle-notch fa-spin';
                     }elseif($status == 3){
+                        $_SESSION['doneTaksCount'] = ++$doneTaksCount;
                         $icon = 'far fa-circle-check';
                     }
 
