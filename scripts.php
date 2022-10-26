@@ -28,7 +28,7 @@
                     }
 
                     echo '
-                    <button onclick="editTask()" class="list-group-item list-group-item-action d-flex">
+                    <button onclick="editTask('.$row['id'].')" class="list-group-item list-group-item-action d-flex">
                         <div class="me-3 fs-16px">
                             <i class=" '.$icon.' text-green fa-fw"></i> 
                         </div>
@@ -63,6 +63,27 @@
     {
         //CODE HERE
         //SQL INSERT
+        
+        $link = connection();
+
+        $title = $_POST["task-title"];
+        $type = $_POST["task-type"];
+        $priotity = $_POST["task-priority"];
+        $status = $_POST["task-status"];
+        $date = $_POST["task-date"];
+        $description = $_POST["task-description"];
+
+        // Attempt insert query execution
+        $sql = "INSERT INTO tasks (`title`, `type_id`, `priority_id`, `status_id`, `task_datetime`, `description`) VALUES ('$title', '$type', '$priotity', '$status', '$date', '$description')";
+        if(mysqli_query($link, $sql)){
+            echo "Records inserted successfully.";
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        }
+        
+        // Close connection
+        mysqli_close($link);
+        
         $_SESSION['message'] = "Task has been added successfully !";
 		header('location: index.php');
     }
