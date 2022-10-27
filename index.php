@@ -355,7 +355,7 @@
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
-							<input type="hidden" id="task-id">
+							<input type="text" name="task-id" id="task-id">
 							<div class="mb-3">
 								<label class="form-label">Title</label>
 								<input type="text" class="form-control" name="task-title" id="task-title"/>
@@ -377,7 +377,6 @@
 							<div class="mb-3">
 								<label class="form-label">Priority</label>
 								<select class="form-select" id="task-priority" name="task-priority">
-									<option value="">Please select</option>
 									<option value="1">Low</option>
 									<option value="2">Medium</option>
 									<option value="3">High</option>
@@ -387,7 +386,6 @@
 							<div class="mb-3">
 								<label class="form-label">Status</label>
 								<select class="form-select" id="task-status" name="task-status">
-									<option value="">Please select</option>
 									<option value="1">To Do</option>
 									<option value="2">In Progress</option>
 									<option value="3">Done</option>

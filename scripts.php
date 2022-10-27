@@ -14,9 +14,6 @@
     {
         //CODE HERE
         //SQL SELECT
-        $todoTaksCount = 0;
-        $inProgressTaksCount = 0;
-        $doneTaksCount = 0;
         $link = connection();
 
         $sql = "SELECT * FROM tasks where status_id = $status";
@@ -24,13 +21,13 @@
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result)){
                     if($status == 1){
-                        $_SESSION['todoTasksCount'] = ++$todoTaksCount;
+                        $_SESSION['todoTasksCount'] = mysqli_num_rows($result);
                         $icon = 'far fa-question-circle';
                     }else if($status == 2){
-                        $_SESSION['inProgressTaksCount'] = ++$inProgressTaksCount;
+                        $_SESSION['inProgressTaksCount'] = mysqli_num_rows($result);
                         $icon = 'fas fa-circle-notch fa-spin';
-                    }elseif($status == 3){
-                        $_SESSION['doneTaksCount'] = ++$doneTaksCount;
+                    }else if($status == 3){
+                        $_SESSION['doneTaksCount'] = mysqli_num_rows($result);
                         $icon = 'far fa-circle-check';
                     }
 
@@ -54,11 +51,7 @@
                 }
                 // Free result set
                 mysqli_free_result($result);
-            } else{
-                echo "No records matching your query were found.";
             }
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
         }
          
         // Close connection
@@ -70,7 +63,6 @@
     {
         //CODE HERE
         //SQL INSERT
-        
         $link = connection();
 
         $title = $_POST["task-title"];
@@ -80,13 +72,8 @@
         $date = $_POST["task-date"];
         $description = $_POST["task-description"];
 
-        // Attempt insert query execution
         $sql = "INSERT INTO tasks (`title`, `type_id`, `priority_id`, `status_id`, `task_datetime`, `description`) VALUES ('$title', '$type', '$priotity', '$status', '$date', '$description')";
-        if(mysqli_query($link, $sql)){
-            echo "Records inserted successfully.";
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-        }
+        mysqli_query($link, $sql);
         
         // Close connection
         mysqli_close($link);
@@ -107,6 +94,15 @@
     {
         //CODE HERE
         //SQL DELETE
+        $link = connection();
+        $id = $_POST["task-id"];
+
+        $sql = "DELETE FROM tasks WHERE id = $id";
+        mysqli_query($link, $sql);
+         
+        // Close connection
+        mysqli_close($link);
+
         $_SESSION['message'] = "Task has been deleted successfully !";
 		header('location: index.php');
     }
