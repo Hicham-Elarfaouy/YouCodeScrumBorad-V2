@@ -17,7 +17,9 @@
         //SQL SELECT
         $link = connection();
 
-        $sql = "SELECT * FROM tasks where status_id = $status";
+        $sql = "SELECT ts.id, ts.title, ty.name AS 'type', pr.name AS 'priority', ts.task_datetime, ts.description 
+        FROM tasks AS ts, types AS ty, priorities AS pr 
+        WHERE ts.type_id = ty.id AND ts.priority_id = pr.id AND ts.status_id = $status";
         if($result = mysqli_query($link, $sql)){
             if($status == 1){
                 $_SESSION['todoTasksCount'] = mysqli_num_rows($result);
@@ -44,8 +46,8 @@
                                 <div class="text-gray-900 flex-1 text-truncate" title="'.$row['description'].'">'.$row['description'].'</div>
                             </div>
                             <div class="mb-1">
-                                <span class="badge bg-primary">'.$row['priority_id'].'</span>
-                                <span class="badge bg-gray-300 text-gray-900">'.$row['type_id'].'</span>
+                                <span class="badge bg-primary">'.$row['priority'].'</span>
+                                <span class="badge bg-gray-300 text-gray-900">'.$row['type'].'</span>
                             </div>
                         </div>
                     </button> ';
