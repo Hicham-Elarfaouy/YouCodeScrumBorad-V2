@@ -355,7 +355,7 @@
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
-							<input type="text" name="task-id" id="task-id">
+							<input type="hidden" name="task-id" id="task-id">
 							<div class="mb-3">
 								<label class="form-label">Title</label>
 								<input type="text" class="form-control" name="task-title" id="task-title"/>
@@ -364,11 +364,11 @@
 								<label class="form-label">Type</label>
 								<div class="ms-3">
 									<div class="form-check mb-1">
-										<input class="form-check-input" name="task-type" type="radio" value="2" id="task-type-feature" checked/>
+										<input class="form-check-input" name="task-type" type="radio" value="2" id="task-type-2" checked/>
 										<label class="form-check-label" for="task-type-feature">Feature</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" name="task-type" type="radio" value="1" id="task-type-bug"/>
+										<input class="form-check-input" name="task-type" type="radio" value="1" id="task-type-1"/>
 										<label class="form-check-label" for="task-type-bug">Bug</label>
 									</div>
 								</div>

@@ -8,6 +8,7 @@
     if(isset($_POST['save']))        saveTask();
     if(isset($_POST['update']))      updateTask();
     if(isset($_POST['delete']))      deleteTask();
+    if(isset($_POST['openTask']))    getSpecificTask($_POST['openTask']);
     
 
     function getTasks($status)
@@ -58,6 +59,34 @@
         mysqli_close($link);
     }
 
+    function getSpecificTask($id)
+    {
+        header('Content-Type: application/json');
+        $aResult = [];
+        // CODE HERE
+        // SQL SELECT
+        $link = connection();
+
+        $sql = "SELECT * FROM tasks where id = $id";
+        if($result = mysqli_query($link, $sql)){
+            if(mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_array($result)){
+                    $aResult[0] = $row['title'];
+                    $aResult[1] = $row['type_id'];
+                    $aResult[2] = $row['priority_id'];
+                    $aResult[3] = $row['status_id'];
+                    $aResult[4] = $row['task_datetime'];
+                    $aResult[5] = $row['description'];
+                }
+                // Free result set
+                mysqli_free_result($result);
+            }
+        }
+         
+        // Close connection
+        mysqli_close($link);
+        echo json_encode($aResult);
+    }
 
     function saveTask()
     {
@@ -86,6 +115,21 @@
     {
         //CODE HERE
         //SQL UPDATE
+        $link = connection();
+        $id = $_POST["task-id"];
+        $title = $_POST["task-title"];
+        $type = $_POST["task-type"];
+        $priotity = $_POST["task-priority"];
+        $status = $_POST["task-status"];
+        $date = $_POST["task-date"];
+        $description = $_POST["task-description"];
+
+        $sql = "UPDATE tasks SET `title`='$title',`type_id`='$type',`priority_id`='$priotity',`status_id`='$status',`task_datetime`='$date',`description`='$description' WHERE id = $id";
+        mysqli_query($link, $sql);
+         
+        // Close connection
+        mysqli_close($link);
+
         $_SESSION['message'] = "Task has been updated successfully !";
 		header('location: index.php');
     }
