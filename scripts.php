@@ -18,18 +18,18 @@
 
         $sql = "SELECT * FROM tasks where status_id = $status";
         if($result = mysqli_query($link, $sql)){
+            if($status == 1){
+                $_SESSION['todoTasksCount'] = mysqli_num_rows($result);
+                $icon = 'far fa-question-circle';
+            }else if($status == 2){
+                $_SESSION['inProgressTaksCount'] = mysqli_num_rows($result);
+                $icon = 'fas fa-circle-notch fa-spin';
+            }else if($status == 3){
+                $_SESSION['doneTaksCount'] = mysqli_num_rows($result);
+                $icon = 'far fa-circle-check';
+            }
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result)){
-                    if($status == 1){
-                        $_SESSION['todoTasksCount'] = mysqli_num_rows($result);
-                        $icon = 'far fa-question-circle';
-                    }else if($status == 2){
-                        $_SESSION['inProgressTaksCount'] = mysqli_num_rows($result);
-                        $icon = 'fas fa-circle-notch fa-spin';
-                    }else if($status == 3){
-                        $_SESSION['doneTaksCount'] = mysqli_num_rows($result);
-                        $icon = 'far fa-circle-check';
-                    }
 
                     echo '
                     <button onclick="editTask('.$row['id'].')" class="list-group-item list-group-item-action d-flex">
