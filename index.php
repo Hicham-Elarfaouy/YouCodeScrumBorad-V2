@@ -358,7 +358,7 @@
 							<input type="hidden" name="task-id" id="task-id">
 							<div class="mb-3">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control" name="task-title" id="task-title"/>
+								<input type="text" class="form-control" name="task-title" id="task-title" required/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
@@ -393,11 +393,11 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="datetime-local" class="form-control" id="task-date" name="task-date"/>
+								<input type="datetime-local" class="form-control" id="task-date" name="task-date" required/>
 							</div>
 							<div class="mb-0">
 								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" id="task-description" name="task-description"></textarea>
+								<textarea class="form-control" rows="10" id="task-description" name="task-description" required></textarea>
 							</div>
 						
 					</div>
