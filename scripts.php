@@ -20,17 +20,15 @@
         $sql = "SELECT ts.id, ts.title, ty.name AS 'type', pr.name AS 'priority', ts.task_datetime, ts.description 
         FROM tasks AS ts, types AS ty, priorities AS pr 
         WHERE ts.type_id = ty.id AND ts.priority_id = pr.id AND ts.status_id = $status";
+
+        $icon = 'far fa-question-circle';
+        if($status == 2){
+            $icon = 'fas fa-circle-notch fa-spin';
+        }else if($status == 3){
+            $icon = 'far fa-circle-check';
+        }
+        
         if($result = mysqli_query($link, $sql)){
-            if($status == 1){
-                $_SESSION['todoTasksCount'] = mysqli_num_rows($result);
-                $icon = 'far fa-question-circle';
-            }else if($status == 2){
-                $_SESSION['inProgressTaksCount'] = mysqli_num_rows($result);
-                $icon = 'fas fa-circle-notch fa-spin';
-            }else if($status == 3){
-                $_SESSION['doneTaksCount'] = mysqli_num_rows($result);
-                $icon = 'far fa-circle-check';
-            }
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result)){
 
@@ -151,6 +149,21 @@
 
         $_SESSION['message'] = "Task has been deleted successfully !";
 		header('location: index.php');
+    }
+
+    function getCountTasks($status)
+    {
+        //CODE HERE
+        //SQL UPDATE
+        $link = connection();
+
+        $sql = "SELECT * FROM tasks where status_id = $status";
+        $result = mysqli_query($link, $sql);
+
+        echo mysqli_num_rows($result);
+         
+        // Close connection
+        mysqli_close($link);
     }
 
 ?>

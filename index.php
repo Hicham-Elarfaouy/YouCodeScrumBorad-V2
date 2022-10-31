@@ -115,7 +115,7 @@
 					<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
 						<img src="assets/img/user/user-13.jpg" alt="" /> 
 						<span>
-							<span class="d-none d-md-inline">Jilali Smith</span>
+							<span class="d-none d-md-inline">Hicham El Arfaouy</span>
 							<b class="caret"></b>
 						</span>
 					</a>
@@ -151,11 +151,11 @@
 							<div class="menu-profile-info">
 								<div class="d-flex align-items-center">
 									<div class="flex-grow-1">
-										Jilali Smith
+										Hicham El Arfaouy
 									</div>
 									<div class="menu-caret ms-auto"></div>
 								</div>
-								<small>Front end developer</small>
+								<small>Back End developer</small>
 							</div>
 						</a>
 					</div>
@@ -256,11 +256,9 @@
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
 							<h4 class="panel-title">To do (<span id="to-do-tasks-count">
-								<?php if (isset($_SESSION['todoTasksCount'])): ?>
-										<?php 
-											echo $_SESSION['todoTasksCount'];
-										?>
-								<?php endif ?>
+								<?php 
+									getCountTasks(1);
+								?>
 							</span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
@@ -283,11 +281,9 @@
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
 							<h4 class="panel-title">In Progress (<span id="in-progress-tasks-count">
-								<?php if (isset($_SESSION['inProgressTaksCount'])): ?>
-										<?php 
-											echo $_SESSION['inProgressTaksCount'];
-										?>
-								<?php endif ?>
+								<?php 
+									getCountTasks(2);
+								?>
 							</span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
@@ -310,11 +306,9 @@
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
 							<h4 class="panel-title">Done (<span id="done-tasks-count">
-								<?php if (isset($_SESSION['doneTaksCount'])): ?>
-										<?php 
-											echo $_SESSION['doneTaksCount'];
-										?>
-								<?php endif ?>
+								<?php 
+									getCountTasks(3);
+								?>
 							</span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
