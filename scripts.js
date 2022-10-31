@@ -44,3 +44,9 @@ function clearForm(){
     document.querySelector("#task-date").value = '';
     document.querySelector("#task-description").value = '';
 }
+
+function deleteTask(){
+    if(confirm('Do you want delete this Task : ') == true){
+        document.querySelector("#buttonDelete").click();
+    }
+}
