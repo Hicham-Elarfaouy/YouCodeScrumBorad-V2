@@ -1,6 +1,6 @@
 
 document.querySelector("#addButton").addEventListener("click", ()=>{
-    clearForm();
+    document.querySelector("#form-task").reset();
 
     // Open Modal
     $("#modal-task").modal('show');
@@ -33,16 +33,6 @@ function editTask(id){
     document.querySelector("#task-update-btn").style.display = 'block';
 
     document.querySelector("#task-id").value = id;
-}
-
-function clearForm(){
-    document.querySelector("#task-id").value = '';
-    document.querySelector("#task-title").value = '';
-    document.querySelector("#task-type-2").checked = true;
-    document.querySelector("#task-priority").value = '1';
-    document.querySelector("#task-status").value = '1';
-    document.querySelector("#task-date").value = '';
-    document.querySelector("#task-description").value = '';
 }
 
 function deleteTask(){
