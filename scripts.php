@@ -32,26 +32,24 @@
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result)){
 
-                    echo '
-                    <button onclick="editTask('.$row['id'].')" class="list-group-item list-group-item-action d-flex">
-                        <div class="me-3 fs-16px">
-                            <i class=" '.$icon.' text-green fa-fw"></i> 
+                    echo "
+                    <button onclick=editTask($row[id]) class='list-group-item list-group-item-action d-flex'>
+                        <div class='me-3 fs-16px'>
+                            <i class='$icon text-green fa-fw'></i> 
                         </div>
-                        <div class="flex-fill w-75">
-                            <div class="fs-14px lh-12 mb-2px fw-bold text-dark text-truncate">'.$row['title'].'</div>
-                            <div class="mb-1 fs-12px">
-                                <div class="text-gray-600 flex-1">#'.$row['id'].' created in '.$row['task_datetime'].'</div>
-                                <div class="text-gray-900 flex-1 text-truncate" title="'.$row['description'].'">'.$row['description'].'</div>
+                        <div class='flex-fill w-75'>
+                            <div class='fs-14px lh-12 mb-2px fw-bold text-dark text-truncate'>$row[title]</div>
+                            <div class='mb-1 fs-12px'>
+                                <div class='text-gray-600 flex-1'>#$row[id] created in $row[task_datetime]</div>
+                                <div class='text-gray-900 flex-1 text-truncate' title='$row[description]'>$row[description]</div>
                             </div>
-                            <div class="mb-1">
-                                <span class="badge bg-primary">'.$row['priority'].'</span>
-                                <span class="badge bg-gray-300 text-gray-900">'.$row['type'].'</span>
+                            <div class='mb-1'>
+                                <span class='badge bg-primary'>$row[priority]</span>
+                                <span class='badge bg-gray-300 text-gray-900'>$row[type]</span>
                             </div>
                         </div>
-                    </button> ';
+                    </button> ";
                 }
-                // Free result set
-                mysqli_free_result($result);
             }
         }
          
