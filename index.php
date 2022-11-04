@@ -15,7 +15,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
+	<link href="assets/css/style.css" rel="stylesheet" />
 	<!-- ================== END core-css ================== -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<!-- BEGIN #loader -->
@@ -350,9 +352,9 @@
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
 							<input type="hidden" name="task-id" id="task-id">
-							<div class="mb-3">
+							<div class="mb-3 controleVal">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control" name="task-title" id="task-title" required/>
+								<input type="text" class="form-control" name="task-title" id="task-title"/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
@@ -389,18 +391,18 @@
 								<label class="form-label">Date</label>
 								<input type="datetime-local" class="form-control" id="task-date" name="task-date" required/>
 							</div>
-							<div class="mb-0">
+							<div class="mb-0 controleVal">
 								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" id="task-description" name="task-description" required></textarea>
+								<textarea class="form-control" rows="10" id="task-description" name="task-description"></textarea>
 							</div>
 						
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-						<button type="submit" name="delete" class="d-none" id="buttonDelete"></a>
+						<button type="submit" class="d-none" id="buttonSubmit"></a>
 						<button type="button" onclick="deleteTask()" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</a>
-						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</button>
-						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
+						<button type="button" onclick="validation(2)" class="btn btn-warning task-action-btn" id="task-update-btn">Update</button>
+						<button type="button" onclick="validation(1)" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
 					</div>
 				</form>
 			</div>

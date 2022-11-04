@@ -1,6 +1,8 @@
 
 document.querySelector("#addButton").addEventListener("click", ()=>{
     document.querySelector("#form-task").reset();
+    document.querySelector('#task-title').classList.remove('errorVal');
+    document.querySelector('#task-description').classList.remove('errorVal');
 
     // Open Modal
     $("#modal-task").modal('show');
@@ -25,6 +27,8 @@ function editTask(id){
         }
     });
 
+    document.querySelector('#task-title').classList.remove('errorVal');
+    document.querySelector('#task-description').classList.remove('errorVal');
     $("#modal-task").modal('show');
     console.log(id);
 
@@ -36,7 +40,56 @@ function editTask(id){
 }
 
 function deleteTask(){
-    if(confirm('Do you want delete this Task : ') == true){
-        document.querySelector("#buttonDelete").click();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let button = document.querySelector("#buttonSubmit");
+            button.removeAttribute('name');
+            button.setAttribute('name', 'delete');
+            button.click();
+        }
+      });
+}
+
+function validation(save){
+    let taskTitle = document.querySelector('#task-title');
+    let titlePattern = /^[aA0-zZ9\s]+$/;
+    validationBorder(taskTitle, titlePattern);
+    let taskDescription = document.querySelector('#task-description');
+    let descriptionPattern = /^[aA0-zZ9\s]+$/;
+    validationBorder(taskDescription, descriptionPattern);
+    
+
+    if(titlePattern.test(taskTitle.value) && descriptionPattern.test(taskDescription.value)){
+        let button = document.querySelector("#buttonSubmit");
+        button.removeAttribute('name');
+
+        if(save == 1){
+            button.setAttribute('name', 'save');
+        }else{
+            button.setAttribute('name', 'update');
+        }
+
+        button.click();
     }
+}
+
+function validationBorder(input, pattern){
+    if(input.value == ''){
+        input.classList.add('errorVal');
+    }
+    input.addEventListener('input', ()=>{
+        if(!pattern.test(input.value)){
+            input.classList.add('errorVal');
+        }else{
+            input.classList.remove('errorVal');
+        }
+    });
 }

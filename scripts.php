@@ -15,11 +15,13 @@
     {
         //CODE HERE
         //SQL SELECT
+        $count = 1;
         $link = connection();
 
         $sql = "SELECT ts.id, ts.title, ty.name AS 'type', pr.name AS 'priority', ts.task_datetime, ts.description 
         FROM tasks AS ts, types AS ty, priorities AS pr 
-        WHERE ts.type_id = ty.id AND ts.priority_id = pr.id AND ts.status_id = $status";
+        WHERE ts.type_id = ty.id AND ts.priority_id = pr.id AND ts.status_id = $status
+        ORDER BY ts.task_datetime";
 
         $icon = 'far fa-question-circle';
         if($status == 2){
@@ -40,7 +42,7 @@
                         <div class='flex-fill w-75'>
                             <div class='fs-14px lh-12 mb-2px fw-bold text-dark text-truncate'>$row[title]</div>
                             <div class='mb-1 fs-12px'>
-                                <div class='text-gray-600 flex-1'>#$row[id] created in $row[task_datetime]</div>
+                                <div class='text-gray-600 flex-1'>#".$count++." created in $row[task_datetime]</div>
                                 <div class='text-gray-900 flex-1 text-truncate' title='$row[description]'>$row[description]</div>
                             </div>
                             <div class='mb-1'>
